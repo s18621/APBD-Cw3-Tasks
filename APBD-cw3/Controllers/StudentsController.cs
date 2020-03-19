@@ -19,9 +19,9 @@ namespace APBD_cw3.Controllers
             _dbService = dbService;
         }
 
-        public String GetStudent()
+        public IActionResult GetStudent()
         {
-            return "Kowalski, Malewski, Andrzejewski";
+            return Ok(_dbService.GetStudents());
         }
 
         [HttpGet("{id}")]
@@ -40,7 +40,7 @@ namespace APBD_cw3.Controllers
         [HttpGet]
             public IActionResult GetStudents(string orderBy)
         {
-            return Ok(_dbService.GetStudents());
+            return Ok(_dbService.GetStudents() + $"sortowanie={orderBy}");
         }
         [HttpPost]
         public IActionResult CreateStudent(Student student)
